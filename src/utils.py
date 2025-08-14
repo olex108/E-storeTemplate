@@ -1,11 +1,11 @@
 import json
-from typing import List, Any
+from typing import Any, List
 
 from src.category import Category
 from src.product import Product
 
 
-def load_data_from_json(path_to_json: str) -> list[Any]:
+def load_data_from_json(path_to_json: str) -> Any:
     """
     Function to load data from json file
 
@@ -34,7 +34,9 @@ def create_category_objects_from_data(data: List[dict]) -> List[Category]:
     for item in data:
         category_objects_list.append(
             Category(
-                name=item["name"], description=item["description"], products=[Product(**i) for i in item["products"]]
+                name=item["name"],
+                description=item["description"],
+                products=[Product.new_product(i) for i in item["products"]],
             )
         )
 
