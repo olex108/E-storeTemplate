@@ -1,3 +1,5 @@
+from _pytest.capture import CaptureFixture
+
 from src.product import Product
 
 
@@ -10,3 +12,35 @@ def test_product_init(product_apple: Product, product_lemon: Product) -> None:
     assert product_lemon.description == "Yellow lemon"
     assert product_lemon.price == 6.40
     assert product_lemon.quantity == 600
+
+
+def test_product_new_product(categories_list: list) -> None:
+    # pass
+    # Test initialisation with class method
+    prod_1 = Product.new_product(categories_list[0]["products"][0])
+
+    assert prod_1.name == "Samsung Galaxy C23 Ultra"
+    assert prod_1.price == 180000.0
+    assert prod_1.quantity == 5
+
+    # Test add product with same name
+    Product.new_product(categories_list[0]["products"][0])
+
+    assert prod_1.quantity == 10
+    assert Product.products_list == [prod_1]
+
+
+def test_getter_setter_product(product_apple: Product) -> None:
+    prod_1 = product_apple
+    assert prod_1.price == 5.99
+
+    prod_1.price = 6.40
+
+    assert prod_1.price == 6.40
+
+
+def test_setter_product_zero_price(product_apple: Product, capsys: CaptureFixture[str]) -> None:
+    prod_1 = product_apple
+    prod_1.price = 0
+    capture = capsys.readouterr()
+    assert capture.out == "Цена не должна быть нулевая или отрицательная\n"

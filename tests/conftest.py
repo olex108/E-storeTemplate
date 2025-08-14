@@ -1,15 +1,15 @@
 import json
+from typing import List
 
 import pytest
 
 from src.category import Category
 from src.product import Product
 
-from typing import List
-
 
 @pytest.fixture(autouse=True)
 def reset_category_counters() -> None:
+    Product.products_list.clear()
     Category.category_count = 0
     Category.product_count = 0
 
@@ -23,6 +23,11 @@ def product_apple() -> Product:
 @pytest.fixture
 def product_lemon() -> Product:
     return Product(name="Lemon", description="Yellow lemon", price=6.40, quantity=600)
+
+
+@pytest.fixture
+def product_blackberry() -> Product:
+    return Product(name="Blackberry", description="black berry", price=1.40, quantity=1200)
 
 
 @pytest.fixture
