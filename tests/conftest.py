@@ -109,3 +109,15 @@ def categories_list_json_data() -> str:
         ],
         ensure_ascii=False,
     )
+
+
+# @pytest.fixture
+# def category_fruits_iterator() -> ProductInCategoryIterator:
+#     return ProductInCategoryIterator(
+#         name="Fruits",
+#         description="Different fruits",
+#         products=[
+#             Product(name="Apple", description="Big red apple", price=5.99, quantity=1000),
+#             Product(name="Lemon", description="Yellow lemon", price=6.40, quantity=600),
+#         ],
+#     )
