@@ -30,6 +30,12 @@ class Product:
 
         Product.products_list.append(self)
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Any) -> Any:
+        return round(self.price * self.quantity + other.price * other.quantity, 2)
+
     @classmethod
     def new_product(cls, product_in_dict: dict) -> Any:
 
