@@ -31,14 +31,16 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+    def __str__(self) -> str:
+        return f"{self.name}, количество продуктов: {sum(product.quantity for product in self.__products)} шт."
+
     @property
     def products(self) -> str:
-        products_in_str = ""
-        for product in self.__products:
-            products_in_str = (
-                products_in_str + f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
-            )
-        return products_in_str
+        return "\n".join(str(product) for product in self.__products)
+
+    @property
+    def products_list(self) -> List[Product]:
+        return self.__products
 
     def add_product(self, product: Product) -> None:
         if product not in self.__products:
