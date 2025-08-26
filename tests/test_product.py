@@ -14,6 +14,14 @@ def test_product_init(product_apple: Product, product_lemon: Product) -> None:
     assert product_lemon.quantity == 600
 
 
+def test_product_str(product_apple: Product) -> None:
+    assert str(product_apple) == "Apple, 5.99 руб. Остаток: 1000 шт."
+
+
+def test_product_add(product_apple: Product, product_lemon: Product) -> None:
+    assert product_apple + product_lemon == 9830.00
+
+
 def test_product_new_product(categories_list: list) -> None:
     # pass
     # Test initialisation with class method

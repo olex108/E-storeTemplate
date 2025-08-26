@@ -37,6 +37,10 @@ price: Price of the product
 quantity: Quantity of the product
 ```
 
+#### ProductInCategoryIterator
+
+Class of Iterator for list od products in category
+
 ### Module utils
 
 #### load_data_from_json
@@ -51,7 +55,7 @@ Function to create category objects from data, which include list of Products ob
 
 #### Classes:
 
-Test for initialization classes Product, Category
+Test for initialization classes Product, Category, ProductInCategoryIterator
 
 #### Module utils
 

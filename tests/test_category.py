@@ -12,22 +12,32 @@ def test_category_init(category_berries: Category, category_fruits: Category) ->
     assert category_berries.product_count == 3
 
 
-def test_category_getter(category_berries: Category, product_blackberry: Product) -> None:
+def test_category_str(category_berries: Category) -> None:
+    assert str(category_berries) == "Berries, количество продуктов: 1000 шт."
+
+
+def test_category_getter_products(category_berries: Category, product_blackberry: Product) -> None:
     assert category_berries.name == "Berries"
     assert category_berries.description == "Different berries"
 
-    assert category_berries.products == "Strawberry, 12.3 руб. Остаток: 1000 шт.\n"
+    assert category_berries.products == "Strawberry, 12.3 руб. Остаток: 1000 шт."
 
     # Add new product in category
     category_berries.add_product(product_blackberry)
 
     assert category_berries.products == (
-        "Strawberry, 12.3 руб. Остаток: 1000 шт.\n" "Blackberry, 1.4 руб. Остаток: 1200 шт.\n"
+        """Strawberry, 12.3 руб. Остаток: 1000 шт.
+Blackberry, 1.4 руб. Остаток: 1200 шт."""
     )
 
     # Test add same product in category
     category_berries.add_product(product_blackberry)
 
     assert category_berries.products == (
-        "Strawberry, 12.3 руб. Остаток: 1000 шт.\n" "Blackberry, 1.4 руб. Остаток: 1200 шт.\n"
+        """Strawberry, 12.3 руб. Остаток: 1000 шт.
+Blackberry, 1.4 руб. Остаток: 1200 шт."""
     )
+
+
+def test_category_getter_products_list(category_fruits: Category) -> None:
+    assert type(category_fruits.products_list) is list
