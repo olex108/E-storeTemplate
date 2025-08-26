@@ -3,7 +3,8 @@ from typing import Any
 
 class Product:
     """
-    Class Product descriptions name, short description, price and quantity of product
+    Class Product descriptions name, short description, price and quantity of product.
+    Class describe methods for add new products, addition products, change price and others
     """
 
     name: str
@@ -34,10 +35,25 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: Any) -> Any:
-        return round(self.price * self.quantity + other.price * other.quantity, 2)
+        """
+        Dander method to add products include check if products are in one class
+
+        :return: sum of price oll quantity of products
+        """
+
+        if type(self) == type(other):
+            return round(self.price * self.quantity + other.price * other.quantity, 2)
+        else:
+            raise TypeError("Different product classes")
 
     @classmethod
     def new_product(cls, product_in_dict: dict) -> Any:
+        """
+        Create new product from given dictionary if product_in_dict describe as class create new product
+
+        :param product_in_dict: description of the product in dict
+        :return: new object of product class
+        """
 
         for product in cls.products_list:
 
@@ -71,6 +87,65 @@ class Product:
                 self.__price = price
         else:
             self.__price = price
+
+
+class Smartphone(Product):
+    """
+    Class Smartphone descriptions name, short description, price and quantity of product,
+    efficiency, model, memory, color
+    """
+
+    efficiency: float
+    model: str
+    memory: int
+    color: str
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ) -> None:
+        """Class initializer"""
+
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """
+    Class Smartphone descriptions name, short description, price and quantity of product,
+    country, germination_period, color
+    """
+
+    country: str
+    germination_period: str
+    color: str
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ) -> None:
+        """Class initializer"""
+
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
 
 
 # if __name__ == "__main__":
