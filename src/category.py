@@ -43,6 +43,11 @@ class Category:
         return self.__products
 
     def add_product(self, product: Product) -> None:
-        if product not in self.__products:
-            self.__products.append(product)
-            Category.product_count += 1
+        """Method to add new product to the category, include check if user add product object"""
+
+        if isinstance(product, Product):
+            if product not in self.__products:
+                self.__products.append(product)
+                Category.product_count += 1
+        else:
+            raise TypeError("You add not a Product")

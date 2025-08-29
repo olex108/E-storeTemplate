@@ -1,3 +1,4 @@
+import pytest
 from _pytest.capture import CaptureFixture
 
 from src.product import Product
@@ -52,3 +53,19 @@ def test_setter_product_zero_price(product_apple: Product, capsys: CaptureFixtur
     prod_1.price = 0
     capture = capsys.readouterr()
     assert capture.out == "Цена не должна быть нулевая или отрицательная\n"
+
+
+def test_smartphone_initialisation(smartphone_list: list) -> None:
+    assert smartphone_list[0].name == "Xiaomi Redmi Note 11"
+    assert smartphone_list[0].description == "1024GB, Синий"
+
+
+def test_grass_initialisation(grass_list: list) -> None:
+    assert grass_list[0].name == "Газонная трава"
+    assert grass_list[0].description == "Элитная трава для газона"
+
+
+def test_add_products(smartphone_list: list, grass_list: list) -> None:
+    assert (smartphone_list[0] + smartphone_list[1]) == 2114000.0
+    with pytest.raises(TypeError):
+        sum_error = smartphone_list[0] + grass_list[1]

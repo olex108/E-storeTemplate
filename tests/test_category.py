@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category, Product
 
 
@@ -41,3 +43,10 @@ Blackberry, 1.4 руб. Остаток: 1200 шт."""
 
 def test_category_getter_products_list(category_fruits: Category) -> None:
     assert type(category_fruits.products_list) is list
+
+
+def test_try_add_product_in_category(category_berries: Category, product_blackberry: Product) -> None:
+    category_berries.add_product(product_blackberry)
+
+    with pytest.raises(TypeError):
+        category_berries.add_product("String object")
