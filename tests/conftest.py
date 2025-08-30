@@ -4,6 +4,7 @@ from typing import List
 import pytest
 
 from src.category import Category
+from src.order import Order
 from src.product import LawnGrass, Product, Smartphone
 
 
@@ -67,6 +68,13 @@ def category_berries() -> Category:
         products=[
             Product(name="Strawberry", description="Big red strawberry", price=12.30, quantity=1000),
         ],
+    )
+
+
+@pytest.fixture
+def order_lemon():
+    return Order(
+
     )
 
 
