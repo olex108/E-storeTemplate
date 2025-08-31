@@ -10,7 +10,6 @@ class Order(BaseOrder):
     product: Product
     quantity: int
 
-
     def __init__(self, product: Product, quantity: int) -> None:
         """
         Initialization method
@@ -24,12 +23,10 @@ class Order(BaseOrder):
         self.quantity = self.check_quantity(quantity)
         self.total_price = round(product.price * self.quantity, 2)
 
-
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.product.name}, quantity: {self.quantity}, total price: {self.total_price}"
 
-
-    def check_quantity(self, quantity) -> int:
+    def check_quantity(self, quantity: int) -> int:
         if quantity <= self.product.quantity:
             self.product.quantity -= quantity
             return quantity
@@ -38,7 +35,6 @@ class Order(BaseOrder):
             max_quantity = self.product.quantity
             self.product.quantity = 0
             return max_quantity
-
 
     @property
     def products(self) -> str:

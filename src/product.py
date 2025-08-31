@@ -35,7 +35,6 @@ class Product(BaseProduct, ProductMixin):
 
         super().__init__()
 
-
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 

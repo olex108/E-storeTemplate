@@ -26,7 +26,7 @@ def create_category_objects_from_data(data: List[dict]) -> List[Category]:
     """
     Function to create category objects from data, which include list of Products objects
 
-    :param data: List of dicts with attributes of class Category
+    :param data: List of dicts with attributes of Category
     :return: List of Category objects
     """
 

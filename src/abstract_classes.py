@@ -3,19 +3,17 @@ from typing import Any
 
 
 class BaseProduct(ABC):
-    """ Abstract class for class Product """
+    """Abstract class for class Product"""
 
     @classmethod
     @abstractmethod
-    def new_product(cls) -> Any:
+    def new_product(cls, product_in_dict: dict[Any, Any]) -> Any:
         pass
-
 
     @property
     @abstractmethod
     def price(self) -> float:
         pass
-
 
     @price.setter
     @abstractmethod
@@ -24,7 +22,7 @@ class BaseProduct(ABC):
 
 
 class BaseOrder(ABC):
-    """ Abstract class for classes Order and Category """
+    """Abstract class for classes Order and Category"""
 
     @property
     @abstractmethod

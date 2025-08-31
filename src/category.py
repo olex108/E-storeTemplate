@@ -8,6 +8,7 @@ from src.product import Product
 class Category(BaseOrder):
     """
     The class describes the name, short description and list of products of the category
+    Class describe method for add product object
     """
 
     name: str
