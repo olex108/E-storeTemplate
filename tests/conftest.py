@@ -37,11 +37,12 @@ def product_zero_quantity() -> Product:
 @pytest.fixture
 def product_zero_quantity_dict() -> dict:
     return {
-                    "name": "Samsung Galaxy",
-                    "description": "256GB, Серый цвет, 200MP камера",
-                    "price": 180000.0,
-                    "quantity": 0
-                }
+        "name": "Samsung Galaxy",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 0,
+    }
+
 
 @pytest.fixture
 def smartphone_list() -> list:

@@ -1,7 +1,6 @@
 import pytest
 
 from src.category import Category, Product
-from src.exception_classes import ZeroProductQuantityError
 
 
 def test_category_init(category_berries: Category, category_fruits: Category) -> None:
@@ -45,7 +44,7 @@ def test_category_getter_products_list(category_fruits: Category) -> None:
     assert type(category_fruits.products_list) is list
 
 
-def test_try_add_product_in_category(category_berries: Category, product_blackberry: Product, product_zero_quantity) -> None:
+def test_try_add_product_in_category(category_berries: Category, product_blackberry: Product) -> None:
     # Test if object is product
     category_berries.add_product(product_blackberry)
 
@@ -53,20 +52,15 @@ def test_try_add_product_in_category(category_berries: Category, product_blackbe
         category_berries.add_product("String object")
 
 
-def test_add_product_in_category_printing(capsys, category_berries: Category, product_zero_quantity: Product) -> None:
-    category_berries.add_product(product_zero_quantity)
+def test_add_product_in_category_printing(capsys, category_berries: Category, product_blackberry: Product) -> None:
+    category_berries.add_product(product_blackberry)
     capture = capsys.readouterr()
-    assert capture.out.split("\n")[-3] == "Нельзя добавить товар с количеством 0"
     assert capture.out.split("\n")[-2] == "Проверка исключения прошла успешно"
 
 
 def test_middle_price(category_fruits: Category) -> None:
     assert category_fruits.middle_price() == 6.20
 
-    cat_1 = Category(
-        name="Fruits",
-        description="Different fruits",
-        products=[]
-    )
+    cat_1 = Category(name="Fruits", description="Different fruits", products=[])
 
     assert cat_1.middle_price() == 0

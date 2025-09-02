@@ -1,5 +1,3 @@
-from logging import exception
-
 from src.abstract_classes import BaseOrder
 
 from typing import List
@@ -74,7 +72,7 @@ class Category(BaseOrder):
         else:
             raise TypeError("You add not a Product")
 
-    def middle_price(self):
+    def middle_price(self) -> float:
         """
         Method to get average price for products in category,
         if there are no products in category return 0

@@ -27,7 +27,7 @@ def test_product_add(product_apple: Product, product_lemon: Product) -> None:
     assert product_apple + product_lemon == 9830.00
 
 
-def test_product_new_product(categories_list: list, product_zero_quantity_dict) -> None:
+def test_product_new_product(categories_list: list, product_zero_quantity_dict: dict) -> None:
     # Test initialisation with class method
     prod_1 = Product.new_product(categories_list[0]["products"][0])
 
@@ -44,7 +44,6 @@ def test_product_new_product(categories_list: list, product_zero_quantity_dict) 
     # Test add product with zero quantity
     with pytest.raises(ValueError):
         Product.new_product(product_zero_quantity_dict)
-
 
 
 def test_getter_setter_product(product_apple: Product) -> None:

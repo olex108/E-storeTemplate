@@ -29,10 +29,10 @@ class Product(BaseProduct, ProductMixin):
         self.name = name
         self.description = description
         self.__price = price
-        # if quantity == 0:
-        #     raise ValueError("Товар с нулевым количеством не может быть добавлен")
-        # else:
-        self.quantity = quantity
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.quantity = quantity
 
         Product.products_list.append(self)
 
@@ -48,7 +48,7 @@ class Product(BaseProduct, ProductMixin):
         :return: sum of price oll quantity of products
         """
 
-        if type(self) == type(other):
+        if type(self) is type(other):
             return round(self.price * self.quantity + other.price * other.quantity, 2)
         else:
             raise TypeError("Different product classes")

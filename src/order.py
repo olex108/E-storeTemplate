@@ -47,7 +47,6 @@ class Order(BaseOrder):
 
         return quantity
 
-
     @property
     def products(self) -> str:
         return f"{self.product.name}, quantity: {self.quantity}, total price: {self.total_price}"
