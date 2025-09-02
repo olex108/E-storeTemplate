@@ -14,6 +14,10 @@ def test_product_init(product_apple: Product, product_lemon: Product) -> None:
     assert product_lemon.price == 6.40
     assert product_lemon.quantity == 600
 
+    # Raise ValueError when try to init object with zero quantity
+    with pytest.raises(ValueError):
+        Product(name="Blackberry", description="black berry", price=1.40, quantity=0)
+
 
 def test_product_str(product_apple: Product) -> None:
     assert str(product_apple) == "Apple, 5.99 руб. Остаток: 1000 шт."
@@ -23,7 +27,7 @@ def test_product_add(product_apple: Product, product_lemon: Product) -> None:
     assert product_apple + product_lemon == 9830.00
 
 
-def test_product_new_product(categories_list: list) -> None:
+def test_product_new_product(categories_list: list, product_zero_quantity_dict) -> None:
     # Test initialisation with class method
     prod_1 = Product.new_product(categories_list[0]["products"][0])
 
@@ -36,6 +40,11 @@ def test_product_new_product(categories_list: list) -> None:
 
     assert prod_1.quantity == 10
     assert Product.products_list == [prod_1]
+
+    # Test add product with zero quantity
+    with pytest.raises(ValueError):
+        Product.new_product(product_zero_quantity_dict)
+
 
 
 def test_getter_setter_product(product_apple: Product) -> None:

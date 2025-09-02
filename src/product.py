@@ -29,7 +29,10 @@ class Product(BaseProduct, ProductMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.quantity = quantity
 
         Product.products_list.append(self)
 
@@ -55,6 +58,11 @@ class Product(BaseProduct, ProductMixin):
         """
         Create new product from given dictionary if product_in_dict describe as class create new product
 
+        If product exist in product list, method add quantity to product and change product price if it is bigger
+        than previous price.
+
+        If user try to add product with zero quantity method raise ValueError
+
         :param product_in_dict: description of the product in dict
         :return: new object of product class
         """
@@ -73,7 +81,11 @@ class Product(BaseProduct, ProductMixin):
         name = product_in_dict["name"]
         description = product_in_dict["description"]
         __price = product_in_dict["price"]
-        quantity = product_in_dict["quantity"]
+
+        if product_in_dict["quantity"] == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            quantity = product_in_dict["quantity"]
 
         return cls(name, description, __price, quantity)
 
