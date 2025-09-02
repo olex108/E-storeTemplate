@@ -1,7 +1,9 @@
 from typing import Any
+from src.abstract_classes import BaseProduct
+from src.mixin_classes import ProductMixin
 
 
-class Product:
+class Product(BaseProduct, ProductMixin):
     """
     Class Product descriptions name, short description, price and quantity of product.
     Class describe methods for add new products, addition products, change price and others
@@ -30,6 +32,8 @@ class Product:
         self.quantity = quantity
 
         Product.products_list.append(self)
+
+        super().__init__()
 
     def __str__(self) -> str:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."

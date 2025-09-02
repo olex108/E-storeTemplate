@@ -5,7 +5,6 @@
 - [Description of Functionality]
 - [Testing]
 
-
 ## Installation:
 
 ```
@@ -15,6 +14,16 @@ git clone https://github.com/olex108/Homework10_1.git
 ## Description of Functionality:
 
 ### Classes:
+
+#### Abstract Classes
+
+1. BaseProduct - Abstract class for class Product
+
+2. BaseOrder - Abstract class for classes Order and Category
+
+#### Mixin Classes
+
+1. ProductMixin - Mixin class for product classes
 
 #### Category
 
@@ -29,6 +38,16 @@ products: List of products of the category
 The class describe methods: 
 
  - add_product: Method to add new product to the category, include check if user add product object
+
+#### Order 
+
+The class describes product, quantity and price in order
+
+```commandline
+product: Product instance
+quantity: Quantity
+total_price: Total price
+```
 
 #### Product
 
@@ -46,7 +65,6 @@ The class describe methods:
 
  - __add__: Dander method to add products include check if products are in one class
  - new_product: Create new product from given dictionary if product_in_dict describe as class create new product
-
 
 ##### Smartphone(Product)
 

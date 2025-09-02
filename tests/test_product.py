@@ -24,7 +24,6 @@ def test_product_add(product_apple: Product, product_lemon: Product) -> None:
 
 
 def test_product_new_product(categories_list: list) -> None:
-    # pass
     # Test initialisation with class method
     prod_1 = Product.new_product(categories_list[0]["products"][0])
 

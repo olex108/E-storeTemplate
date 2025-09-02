@@ -32,6 +32,7 @@ def test_create_category_objects_from_data(categories_list: list) -> None:
 Iphone 15, 210000.0 руб. Остаток: 8 шт.
 Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт."""
     )
+
     assert category_objects_list[1].products == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
 
     # Test Category counters

@@ -5,8 +5,8 @@ from src.product_in_category_iterator import ProductInCategoryIterator
 
 
 def test_product_in_category_iterator(category_fruits: Category) -> None:
-    iter_1 = ProductInCategoryIterator(category_fruits)
 
+    iter_1 = ProductInCategoryIterator(category_fruits)
     iter(iter_1)
 
     assert str(next(iter_1)) == "Apple, 5.99 руб. Остаток: 1000 шт."
