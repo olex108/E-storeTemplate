@@ -54,3 +54,16 @@ class Category(BaseOrder):
                 Category.product_count += 1
         else:
             raise TypeError("You add not a Product")
+
+    def middle_price(self):
+        """
+        Method to get average price for products in category,
+        if there are no products in category return 0
+
+        :return: Average price for products in category
+        """
+
+        try:
+            return round(sum(product.price for product in self.__products) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0

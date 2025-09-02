@@ -49,3 +49,15 @@ def test_try_add_product_in_category(category_berries: Category, product_blackbe
 
     with pytest.raises(TypeError):
         category_berries.add_product("String object")
+
+
+def test_middle_price(category_fruits: Category) -> None:
+    assert category_fruits.middle_price() == 6.20
+
+    cat_1 = Category(
+        name="Fruits",
+        description="Different fruits",
+        products=[]
+    )
+
+    assert cat_1.middle_price() == 0
