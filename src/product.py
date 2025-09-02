@@ -29,10 +29,10 @@ class Product(BaseProduct, ProductMixin):
         self.name = name
         self.description = description
         self.__price = price
-        if quantity == 0:
-            raise ValueError("Товар с нулевым количеством не может быть добавлен")
-        else:
-            self.quantity = quantity
+        # if quantity == 0:
+        #     raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        # else:
+        self.quantity = quantity
 
         Product.products_list.append(self)
 

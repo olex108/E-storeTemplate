@@ -1,8 +1,11 @@
+from logging import exception
+
 from src.abstract_classes import BaseOrder
 
 from typing import List
 
 from src.product import Product
+from src.exception_classes import ZeroProductQuantityError
 
 
 class Category(BaseOrder):
@@ -46,12 +49,28 @@ class Category(BaseOrder):
         return self.__products
 
     def add_product(self, product: Product) -> None:
-        """Method to add new product to the category, include check if user add product object"""
+        """
+        Method to add new product to the category.
+        Include checking:
+         - if user add product object raise TypeError
+         - If quantity of product is 0 raise error
+        """
 
         if isinstance(product, Product):
-            if product not in self.__products:
-                self.__products.append(product)
-                Category.product_count += 1
+            try:
+                if product.quantity == 0:
+                    raise ZeroProductQuantityError("Нельзя добавить товар с количеством 0")
+            except ZeroProductQuantityError as e:
+                print(str(e))
+            else:
+                if product not in self.__products:
+                    self.__products.append(product)
+                    Category.product_count += 1
+                    print("Товар успешно добавлен")
+                else:
+                    print("Товар уже существует")
+            finally:
+                print("Проверка исключения прошла успешно")
         else:
             raise TypeError("You add not a Product")
 

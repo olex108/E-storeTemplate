@@ -30,6 +30,11 @@ def product_blackberry() -> Product:
 
 
 @pytest.fixture
+def product_zero_quantity() -> Product:
+    return Product(name="Blackberry", description="black berry", price=1.40, quantity=0)
+
+
+@pytest.fixture
 def product_zero_quantity_dict() -> dict:
     return {
                     "name": "Samsung Galaxy",
