@@ -38,6 +38,7 @@ products: List of products of the category
 The class describe methods: 
 
  - add_product: Method to add new product to the category, include check if user add product object
+ - middle_price: Method to get average price for products in category
 
 #### Order 
 
@@ -77,6 +78,10 @@ Class Smartphone descriptions name, short description, price and quantity of pro
 #### ProductInCategoryIterator
 
 Class of Iterator for list od products in category
+
+#### ZeroProductQuantityError
+
+Exception for raise error for product with zero quantity
 
 ### Module utils
 

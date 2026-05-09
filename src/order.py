@@ -1,5 +1,6 @@
 from src.product import Product
 from src.abstract_classes import BaseOrder
+from src.exception_classes import ZeroProductQuantityError
 
 
 class Order(BaseOrder):
@@ -27,14 +28,24 @@ class Order(BaseOrder):
         return f"{self.product.name}, quantity: {self.quantity}, total price: {self.total_price}"
 
     def check_quantity(self, quantity: int) -> int:
-        if quantity <= self.product.quantity:
-            self.product.quantity -= quantity
-            return quantity
+
+        try:
+            if self.product.quantity == 0:
+                raise ZeroProductQuantityError("Нельзя добавить товар с количеством 0")
+        except ZeroProductQuantityError as e:
+            print(str(e))
         else:
-            print(f"Max quantity of is {self.product.quantity}")
-            max_quantity = self.product.quantity
-            self.product.quantity = 0
-            return max_quantity
+            if quantity <= self.product.quantity:
+                self.product.quantity -= quantity
+                print("Товар успешно добавлен")
+            else:
+                print(f"Max quantity of is {self.product.quantity}")
+                quantity = self.product.quantity
+                self.product.quantity = 0
+        finally:
+            print("Проверка исключения прошла успешно")
+
+        return quantity
 
     @property
     def products(self) -> str:
